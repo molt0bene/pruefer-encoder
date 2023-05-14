@@ -10,7 +10,7 @@ def start():
     user_input = input()
 
     if user_input.lower() in encode_options:
-        GraphEncoder.perform()
+        GraphEncoder().perform()
         pass
     elif user_input.lower() in decode_options:
         # GraphDecoder.perform()

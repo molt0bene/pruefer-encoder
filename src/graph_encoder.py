@@ -1,12 +1,16 @@
 from tkinter import *
 
 class GraphEncoder:
-    @classmethod
     def perform(self):
-        initialize_canvas()
+        self.initialize_canvas()
 
+    def initialize_canvas(self):
+        root = Tk()
+        root.title("Insert graph")
+        root.geometry('800x600')
 
-def initialize_canvas():
-    root = Tk()
-    root.title("Insert graph")
-    root.mainloop()
+        root.bind("<Button-1>", self.leftclick)
+        root.mainloop()
+
+    def leftclick(self, event):
+        print('kajfafj:', str(event.x) + "," + str(event.y))
