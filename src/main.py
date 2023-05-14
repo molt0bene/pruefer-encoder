@@ -5,7 +5,7 @@ def start():
     decode_options = ['decode', 'd']
 
     print('Hello! Please pick whether you want to encode (E) or \
-          decode (D) the graph using the <> code. Press q to quit.')
+          decode (D) the graph using the Pruefer code. Press q to quit.')
 
     user_input = input().lower()
 
