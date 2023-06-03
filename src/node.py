@@ -1,5 +1,5 @@
 class Node:
-    RADIUS = 12
+    RADIUS = 15
     DISPLAY_OPTIONS = {'outline': 'black', 'fill': '#ccff99'}
 
     def __init__(self, num, x, y):

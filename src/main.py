@@ -1,4 +1,4 @@
-from graph_encoder import GraphEncoder
+from graph_encoder_painter import GraphEncoderPainter
 
 def start():
     encode_options = ['encode', 'e']
@@ -10,7 +10,7 @@ def start():
     user_input = input().lower()
 
     if user_input in encode_options:
-        GraphEncoder().perform()
+        GraphEncoderPainter().perform()
     elif user_input in decode_options:
         # GraphDecoder.perform()
         pass
