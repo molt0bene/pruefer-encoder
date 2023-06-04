@@ -1,6 +1,6 @@
 from tkinter import *
-from node import Node
-from graph_encoder import GraphEncoder
+from .node import Node
+from .graph_encoder import GraphEncoder
 
 class GraphEncoderPainter:
     def __init__(self):

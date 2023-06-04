@@ -47,5 +47,5 @@ class GraphDecoder:
         A.draw('ademo.png')
 
 
-g = GraphDecoder([0, 3, 4, 4])
-g.perform()
+# g = GraphDecoder([0, 3, 4, 4])
+# g.perform()
