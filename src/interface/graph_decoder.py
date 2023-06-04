@@ -3,7 +3,7 @@ from graphviz import Source
 
 class GraphDecoder:
     def __init__(self, code):
-        self.code = code
+        self.code = [*map(lambda x: x - 1, code)]
 
     def perform(self):
         self.build_graph()
