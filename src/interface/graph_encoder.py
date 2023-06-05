@@ -16,12 +16,11 @@ class GraphEncoder:
             
             # Find its neighbor and add it to the code
             neighbor = self.v_neighbours[leaf][0]
-            pruefer_code.append(neighbor)
+            pruefer_code.append(neighbor + 1)
             
             # Remove the leaf from the tree
             degree[leaf] = 0
             degree[neighbor] -= 1
             self.v_neighbours[neighbor].remove(leaf)
         
-        print(*pruefer_code)
         return pruefer_code
