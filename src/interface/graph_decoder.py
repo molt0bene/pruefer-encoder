@@ -43,9 +43,3 @@ class GraphDecoder:
         A.layout(prog='dot')
         s = Source.from_file('ademo.dot')
         s.view()
-
-        A.draw('ademo.png')
-
-
-# g = GraphDecoder([0, 3, 4, 4])
-# g.perform()
