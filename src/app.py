@@ -3,11 +3,6 @@ from interface.graph_decoder import GraphDecoder
 
 app = Flask(__name__)
 
-# def threaded(fn):
-#     def wrapper(*args, **kwargs):
-#         Thread(target=fn, args=args, kwargs=kwargs).start()
-#     return wrapper
-
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -18,12 +13,11 @@ def get_code():
 
     try:
         data = list(map(int, data.split()))
+        decoder = GraphDecoder(list(data))
+        decoder.perform()
     except:
-        print('Something went wrong')
-        return
+        return render_template("error.html")
     
-    decoder = GraphDecoder(list(data))
-    decoder.perform()
     return render_template("success.html")
 
 @app.route('/encode', methods=['POST'])
