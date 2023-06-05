@@ -1,4 +1,4 @@
-from graph_encoder_painter import GraphEncoderPainter
+from interface.graph_encoder_painter import GraphEncoderPainter
 
 def start():
     encode_options = ['encode', 'e']
