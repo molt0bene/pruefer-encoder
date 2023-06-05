@@ -1,6 +1,12 @@
 from tkinter import *
+from threading import Thread
 from .node import Node
 from .graph_encoder import GraphEncoder
+
+def threaded(fn):
+    def wrapper(*args, **kwargs):
+        Thread(target=fn, args=args, kwargs=kwargs).start()
+    return wrapper
 
 class GraphEncoderPainter:
     def __init__(self):
@@ -12,6 +18,7 @@ class GraphEncoderPainter:
     def perform(self):
         self.initialize_canvas()
 
+    @threaded
     def initialize_canvas(self):
         self.root.title("Insert graph")
         self.root.geometry('800x600')
@@ -28,6 +35,7 @@ class GraphEncoderPainter:
         self.root.bind("<Button-2>", self.connect_nodes)
         self.root.mainloop()
 
+    @threaded
     def create_node(self, event):
         x = int(event.x) 
         y = int(event.y)
@@ -39,8 +47,8 @@ class GraphEncoderPainter:
             self.root.destroy()
 
             encoder = GraphEncoder(self.v_neighbours)
-            self.code = encoder.encode()
-            return
+            code = encoder.encode()
+            return code
         
         node_id = len(self.nodes)
         self.canvas.create_oval(x - Node.RADIUS, y - Node.RADIUS,
@@ -51,6 +59,7 @@ class GraphEncoderPainter:
         self.v_neighbours.append([])
         self.nodes.append(Node(node_id, x, y))
 
+    @threaded
     def connect_nodes(self, event):
         x = int(event.x) 
         y = int(event.y)
