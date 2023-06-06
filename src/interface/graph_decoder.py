@@ -8,25 +8,25 @@ class GraphDecoder:
     def perform(self):
         self.build_graph()
 
-    def encode(self):
-        n = len(self.code) + 2  # Number of vertices
-        degree = [1] * n  # Degree of each vertex, initialize to 1
+    def decode(self):
+        n = len(self.code) + 2  # Число вершин
+        degree = [1] * n  # Степень каждой вершины, изначально 1
 
         for v in self.code:
             degree[v] += 1
         tree_edges = []
 
         for i in range(n - 2):
-            # Find the smallest numbered leaf
+            # Находим лист с минимальным номером
             leaf = min(v for v in range(n) if degree[v] == 1)
-            # Find its neighbor using the Prüfer code
+            # Находим его соседа по коду Прюфера
             neighbor = self.code[i]
-            # Add the edge to the tree and update degrees
+            # Добавляем ребро и обновляем степени
             tree_edges.append((leaf, neighbor))
             degree[leaf] -= 1
             degree[neighbor] -= 1
 
-        # The last two vertices are connected by an edge
+        # Добавляем ребро последних двух вершин
         last_two = [v for v in range(1, n) if degree[v] == 1]
         tree_edges.append((last_two[0], last_two[1]))
 
@@ -34,7 +34,7 @@ class GraphDecoder:
     
     def build_graph(self):
         A = PG.AGraph(directed=False, strict=True)
-        tree_edges = self.encode()
+        tree_edges = self.decode()
 
         for edge in tree_edges:
             A.add_edge(edge[0] + 1, edge[1] + 1)

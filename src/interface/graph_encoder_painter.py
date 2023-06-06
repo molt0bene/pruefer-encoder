@@ -35,13 +35,17 @@ class GraphEncoderPainter:
         if (x >= 750 and y >= 550):
             print('Введенные вершины:')
             print(self.v_neighbours)
+            self.canvas.delete('all')
 
             encoder = GraphEncoder(self.v_neighbours)
-            code = list(map(str, encoder.encode()))
 
-            self.canvas.delete('all')
-            self.canvas.create_text(200, 200, text=f"The code is: {' '.join(code)}", fill='black', font=('Helvetica 15 bold'))
-            return code
+            result = encoder.encode()
+            if result[0] == "Success":
+                code = list(map(str, result[1]))
+                self.canvas.create_text(200, 200, text=f"The code is: {' '.join(code)}", fill='black', font=('Helvetica 15 bold'))
+                return
+            else:
+                self.canvas.create_text(200, 200, text=result[1], fill='black', font=('Helvetica 15 bold'))
         
         node_id = len(self.nodes)
         self.canvas.create_oval(x - Node.RADIUS, y - Node.RADIUS,
